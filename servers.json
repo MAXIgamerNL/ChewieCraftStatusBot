@@ -10,5 +10,16 @@
       }
     },
     "categoryId": "1441754753171198104"
+  },
+    "1373419656186171473": {
+    "servers": {
+      "37.230.138.105": {
+        "channelId": "1441931874560639026",
+        "port": 25600,
+        "bedrock": false,
+        "onlineName": "🟢 Online | {online}/{max}",
+        "offlineName": "🔴 Offline | Server down"
+      }
+    },
   }
 }
