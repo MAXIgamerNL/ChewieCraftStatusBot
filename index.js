@@ -62,7 +62,7 @@ async function ensureCategory(guild) {
   }
 
   const category = await guild.channels.create({
-    name: 'Server Status',
+    name: 'Server Test',
     type: ChannelType.GuildCategory
   });
 
