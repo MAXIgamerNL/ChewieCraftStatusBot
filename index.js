@@ -55,17 +55,18 @@ client.once(Events.ClientReady, async (c) => {
   }
 });
 
+// ---------------- CATEGORY CREATION DISABLED ----------------
 // async function ensureCategory(guild) {
 //   if (db[guild.id]?.categoryId) {
 //     const cat = guild.channels.cache.get(db[guild.id].categoryId);
 //     if (cat) return cat;
 //   }
-
+//
 //   const category = await guild.channels.create({
 //     name: 'Server Test',
 //     type: ChannelType.GuildCategory
 //   });
-
+//
 //   db[guild.id] = db[guild.id] || {};
 //   db[guild.id].categoryId = category.id;
 //   saveDB();
@@ -82,16 +83,16 @@ async function updateGuild(guild) {
   const servers = db[guild.id]?.servers;
   if (!servers || Object.keys(servers).length === 0) return;
 
-  const category = await ensureCategory(guild);
+  // const category = await ensureCategory(guild); // COMMENTED OUT
   let allOnline = true;
 
   for (const [host, cfg] of Object.entries(servers)) {
     const channel = guild.channels.cache.get(cfg.channelId);
     if (!channel) continue;
 
-    if (channel.parentId !== category.id) {
-      await channel.setParent(category.id).catch(() => {});
-    }
+    // if (channel.parentId !== category.id) {
+    //   await channel.setParent(category.id).catch(() => {});
+    // }
 
     try {
       const result = cfg.bedrock
@@ -111,12 +112,8 @@ async function updateGuild(guild) {
     }
   }
 
-  // Update category name with status emoji
-  const statusEmoji = allOnline ? 'Online' : 'Offline';
-  // const newName = allOnline ? 'Server Test' : 'Server Test';
-  if (category.name !== newName) {
-    await category.setName(newName).catch(() => {});
-  }
+  // const statusEmoji = allOnline ? 'Online' : 'Offline';
+  // Example: await category.setName(`Server Test (${statusEmoji})`).catch(() => {});
 }
 
 client.on('interactionCreate', async (i) => {
@@ -138,15 +135,15 @@ client.on('interactionCreate', async (i) => {
         const bedrock = type === 'bedrock';
         let channel = i.options.getChannel('channel');
 
-        if (!channel) {
-          const category = await ensureCategory(i.guild);
-          channel = await i.guild.channels.create({
-            name: 'Loading...',
-            type: ChannelType.GuildVoice,
-            parent: category,
-            permissionOverwrites: [{ id: i.guild.id, deny: ['Connect'] }]
-          });
-        }
+        // if (!channel) {
+        //   const category = await ensureCategory(i.guild);
+        //   channel = await i.guild.channels.create({
+        //     name: 'Loading...',
+        //     type: ChannelType.GuildVoice,
+        //     parent: category, // COMMENTED OUT
+        //     permissionOverwrites: [{ id: i.guild.id, deny: ['Connect'] }]
+        //   });
+        // }
 
         db[gid].servers[host] = {
           channelId: channel.id,
