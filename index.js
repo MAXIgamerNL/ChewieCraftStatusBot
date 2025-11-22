@@ -113,7 +113,7 @@ async function updateGuild(guild) {
 
   // Update category name with status emoji
   const statusEmoji = allOnline ? 'Online' : 'Offline';
-  const newName = allOnline ? 'Server Status' : 'Server Status';
+  const newName = allOnline ? 'Server Test' : 'Server Test';
   if (category.name !== newName) {
     await category.setName(newName).catch(() => {});
   }
