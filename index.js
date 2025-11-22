@@ -55,22 +55,22 @@ client.once(Events.ClientReady, async (c) => {
   }
 });
 
-async function ensureCategory(guild) {
-  if (db[guild.id]?.categoryId) {
-    const cat = guild.channels.cache.get(db[guild.id].categoryId);
-    if (cat) return cat;
-  }
+// async function ensureCategory(guild) {
+//   if (db[guild.id]?.categoryId) {
+//     const cat = guild.channels.cache.get(db[guild.id].categoryId);
+//     if (cat) return cat;
+//   }
 
-  const category = await guild.channels.create({
-    name: 'Server Test',
-    type: ChannelType.GuildCategory
-  });
+//   const category = await guild.channels.create({
+//     name: 'Server Test',
+//     type: ChannelType.GuildCategory
+//   });
 
-  db[guild.id] = db[guild.id] || {};
-  db[guild.id].categoryId = category.id;
-  saveDB();
-  return category;
-}
+//   db[guild.id] = db[guild.id] || {};
+//   db[guild.id].categoryId = category.id;
+//   saveDB();
+//   return category;
+// }
 
 function startMonitoring(guild) {
   if (tasks.has(guild.id)) clearInterval(tasks.get(guild.id));
@@ -113,7 +113,7 @@ async function updateGuild(guild) {
 
   // Update category name with status emoji
   const statusEmoji = allOnline ? 'Online' : 'Offline';
-  const newName = allOnline ? 'Server Test' : 'Server Test';
+  // const newName = allOnline ? 'Server Test' : 'Server Test';
   if (category.name !== newName) {
     await category.setName(newName).catch(() => {});
   }
