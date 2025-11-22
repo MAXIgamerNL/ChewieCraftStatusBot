@@ -1,0 +1,14 @@
+{
+  "1205978789113503814": {
+    "servers": {
+      "37.230.138.105": {
+        "channelId": "1441755147565928481",
+        "port": 25600,
+        "bedrock": false,
+        "onlineName": "🟢 Online | {online}/{max}",
+        "offlineName": "🔴 Offline | Server down"
+      }
+    },
+    "categoryId": "1441754753171198104"
+  }
+}
