@@ -59,7 +59,7 @@ function startMonitoring(guild) {
   if (tasks.has(guild.id)) clearInterval(tasks.get(guild.id));
   tasks.set(guild.id, setInterval(() => updateGuild(guild), CHECK_INTERVAL));
   updateGuild(guild);
-}
+} 
 
 async function updateGuild(guild) {
   const servers = db[guild.id]?.servers;
